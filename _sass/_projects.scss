@@ -190,8 +190,20 @@
   box-shadow: var(--shadow-soft);
 }
 
+.project-title {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-top: 0.45rem;
+}
+
+.project-title .blog-card-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+}
+
 .project-hero h1 {
-  margin: 0.45rem 0 0;
+  margin: 0;
   font-family: "Bricolage Grotesque", "Space Grotesk", sans-serif;
   font-size: clamp(2rem, 3.4vw, 3.05rem);
   line-height: 1.08;
@@ -205,16 +217,6 @@
 
 .project-actions-top {
   margin-top: 1.2rem;
-}
-
-.project-image {
-  margin: 1.1rem auto 0;
-  width: fit-content;
-  max-width: 100%;
-  border-radius: 1rem;
-  overflow: hidden;
-  border: 1px solid rgba(31, 42, 55, 0.12);
-  box-shadow: var(--shadow-soft);
 }
 
 .project-content {

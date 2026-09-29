@@ -1,18 +1,17 @@
 # Site settings
-title: Zeikar's Lab
-email: zeikar.dev@gmail.com
+title: SFB Lab
+email: example@gmail.com
 description: >-
-  Irregular Apparatus Lab — oddly specific tools, built one at a time.
-  Frameworks, web apps, browser extensions, desktop things.
+  Structural and Functional Genomics Lab
 # Project site: https://rund0wn.github.io/lab-website/
 # The Pages workflow overrides baseurl with the live base path.
 baseurl: "/lab-website"
 url: "https://rund0wn.github.io"
-twitter:
-  username: zeikar_dev
-  card: summary_large_image
-twitter_username: zeikar_dev
-github_username: zeikar
+# twitter:
+#   username: zeikar_dev
+#   card: summary_large_image
+# twitter_username: zeikar_dev
+# github_username: zeikar
 
 # Build settings
 markdown: kramdown
@@ -20,43 +19,18 @@ highlighter: rouge
 sass:
   style: expanded
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
   - jekyll-redirect-from
-
-# Posts permalink (under /blog/) + default layout. Scoped to type: posts only —
-# a site-level `permalink` would also rewrite pages like about.html into
-# /about/ directory form, breaking existing /about.html and /resume.html URLs.
-defaults:
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: post
-      lang: en
-      permalink: /blog/:title/
-  - scope:
-      path: "_posts/ko"
-      type: posts
-    values:
-      layout: post
-      lang: ko
-      permalink: /blog/ko/:title/
 
 # Collections
 collections:
   projects:
     output: true
     permalink: /:collection/:name/
-
-# Comments (giscus). Fill in the four values from https://giscus.app
-# (after enabling Discussions on the repo and installing the giscus app).
-# Leave repo_id empty to disable rendering site-wide.
-giscus:
-  repo: rund0wn/lab-website
-  repo_id: ""
-  category: Comments
-  category_id: ""
+  # People on /members/. output is false: the bio expands on that page,
+  # so a member file does not get its own URL.
+  members:
+    output: false
 
 # Google Analytics 4 measurement ID (G-XXXXXXXXXX). Leave empty to disable.
 # Only emitted in production builds (JEKYLL_ENV=production, set by the Pages
@@ -67,16 +41,23 @@ google_analytics: ""
 lang: en
 author:
   name: Zeikar
-  twitter: zeikar_dev
-social:
-  name: Zeikar
-  links:
-    - https://github.com/zeikar
+  # twitter: zeikar_dev
+# social:
+  # name: Zeikar
+  # links:
+    # - https://github.com/zeikar
 
 # Additional same-origin URLs to include in sitemap.xml
 # Paths on this site. Other zeikar.dev subsites are separate repos and are not copied here.
+# Labels for the project index filters. A project sets the same string in `stack:`.
+project_stacks:
+  - Function prediction methods
+  - Microbiome Resources
+  - Tools
+
 extra_sitemap_urls:
-  - /blog/
+  - /projects/
+  - /members/
 
 # Exclude from processing
 exclude:

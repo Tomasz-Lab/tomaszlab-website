@@ -8,8 +8,16 @@
 
 .blog-filter {
   display: flex;
+  flex-wrap: wrap;
   gap: 0.5rem;
   margin: 0 0 1.5rem;
+}
+
+.project-filter .blog-filter-btn {
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
 }
 
 .blog-filter-btn {
@@ -105,11 +113,42 @@
   color: var(--brand);
 }
 
+.blog-card-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 0.45rem;
+}
+
+.blog-card-icon {
+  display: grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  flex-shrink: 0;
+  border-radius: 0.55rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(235, 94, 40, 0.2), rgba(15, 139, 141, 0.22));
+}
+
+.blog-card-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.blog-card-fallback {
+  font-family: "Bricolage Grotesque", "Space Grotesk", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: rgba(31, 42, 55, 0.66);
+}
+
 .blog-card-title {
   font-family: "Bricolage Grotesque", "Space Grotesk", sans-serif;
   font-size: 1.5rem;
   line-height: 1.25;
-  margin: 0 0 0.4rem;
+  margin: 0;
   color: var(--ink);
 }
 

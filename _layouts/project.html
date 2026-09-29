@@ -4,11 +4,18 @@ layout: default
 
 <article class="section-space project-page">
   <div class="container narrow">
-    <a href="{{ '/#projects' | relative_url }}" class="back-link reveal"><- Back to projects</a>
+    <a href="{{ '/projects/' | relative_url }}" class="back-link reveal"><- Back to projects</a>
 
     <header class="project-hero reveal">
       <p class="eyebrow">{% if page.gadget_no %}<span class="unit-no">UNIT {{ page.gadget_no | prepend: '0' | slice: -2, 2 }}</span> &middot; {% endif %}Case Study</p>
-      <h1>{{ page.title }}</h1>
+      <div class="project-title">
+        {% if page.image and page.image contains "/assets/" %}
+        <span class="blog-card-icon">
+          <img src="{% include image-src.html path=page.image %}" alt="" />
+        </span>
+        {% endif %}
+        <h1>{{ page.title }}</h1>
+      </div>
       <p class="project-summary">{{ page.description }}</p>
 
       {% if page.tech_stack %}
@@ -28,12 +35,6 @@ layout: default
         {% endif %}
       </div>
     </header>
-
-    {% if page.image %}
-    <figure class="project-image reveal">
-      <img src="{% include image-src.html path=page.image %}" alt="{{ page.title }} screenshot" loading="lazy" />
-    </figure>
-    {% endif %}
 
     <section class="project-content reveal">
       {{ content }}

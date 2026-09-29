@@ -11,6 +11,7 @@ tech_stack:
     "deep learning"
   ]
 github_url: "https://github.com/TomaszLab/deepFRI2"
+stack: Function prediction methods
 image: "/assets/images/projects/fryingpan2.png"
 sequence: 1
 gadget_no: 17

@@ -11,6 +11,7 @@ tech_stack:
     "structure"
   ]
 github_url: "https://github.com/TomaszLab/Metagenomic-DeepFRI"
+stack: Function prediction methods
 image: "/assets/images/projects/fryingpan.png"
 sequence: 1
 gadget_no: 17

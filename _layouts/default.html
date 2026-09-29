@@ -16,15 +16,7 @@
 
     {% seo %}
 
-    {% comment %}
-      RSS auto-discovery. jekyll-feed builds /feed.xml but doesn't inject the
-      <link rel="alternate"> itself — feed_meta emits it so readers and crawlers
-      can find the feed. jekyll-seo-tag already emits BlogPosting JSON-LD for
-      posts, so no hand-rolled Article schema is needed here.
-    {% endcomment %}
-    {% feed_meta %}
-
-    {% comment %} hreflang annotations for posts that have translations {% endcomment %}
+    {% comment %} hreflang annotations for pages that have translations {% endcomment %}
     {% if page.translations %}
       {% assign self_lang = page.lang | default: 'en' %}
       <link rel="alternate" hreflang="{{ self_lang }}" href="{{ page.url | absolute_url }}" />
@@ -163,15 +155,7 @@
           {{ site.title }}
         </a>
 
-        <button
-          class="nav-toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="primary-nav"
-        >
-          Menu
-        </button>
-
+        <div class="nav-cluster">
         <nav id="primary-nav" class="primary-nav" aria-label="Primary">
           <a
             href="{{ '/' | relative_url }}"
@@ -186,16 +170,16 @@
             About
           </a>
           <a
-            href="{{ '/blog/' | relative_url }}"
-            class="nav-link {% if page.url contains '/blog' %}is-active{% endif %}"
+            href="{{ '/projects/' | relative_url }}"
+            class="nav-link {% if page.url contains '/projects' %}is-active{% endif %}"
           >
-            Blog
+            Projects
           </a>
           <a
-            href="{{ '/resume/' | relative_url }}"
-            class="nav-link {% if page.url == '/resume/' or page.url == '/resume-ko/' %}is-active{% endif %}"
+            href="{{ '/members/' | relative_url }}"
+            class="nav-link {% if page.url == '/members/' %}is-active{% endif %}"
           >
-            Resume
+            Members
           </a>
           {% if site.github_username %}
           <a
@@ -208,6 +192,28 @@
           </a>
           {% endif %}
         </nav>
+
+        {% comment %}
+          Polish pages are not written yet. When one exists, set
+          translations.pl to its path and this becomes a link.
+        {% endcomment %}
+        <div class="lang-switch" role="group" aria-label="Language">
+          <a class="lang-switch-opt is-active" href="{{ page.url | relative_url }}" hreflang="en" lang="en" aria-current="true">EN</a>
+          {% if page.translations.pl %}
+          <a class="lang-switch-opt" href="{{ page.translations.pl | relative_url }}" hreflang="pl" lang="pl">PL</a>
+          {% else %}
+          <span class="lang-switch-opt is-unavailable" lang="pl" title="Polish translation is not available yet">PL</span>
+          {% endif %}
+        </div>
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          Menu
+        </button>
+        </div>
       </div>
     </header>
 

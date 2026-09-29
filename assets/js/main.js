@@ -62,89 +62,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  const blogFilter = document.querySelector('.blog-filter');
-  const blogList = document.querySelector('.blog-list');
-  const blogEmptyStates = document.querySelectorAll('.blog-empty[data-empty-for]');
+  const projectFilter = document.querySelector('.project-filter');
+  const projectList = document.querySelector('.project-list');
+  const projectEmpty = document.querySelector('.project-empty');
 
-  if (blogFilter && blogList) {
-    const applyFilter = (lang) => {
-      blogList.dataset.active = lang;
-      blogFilter.querySelectorAll('.blog-filter-btn').forEach((b) => {
-        const active = b.dataset.filter === lang;
-        b.classList.toggle('is-active', active);
-        b.setAttribute('aria-pressed', String(active));
+  if (projectFilter && projectList) {
+    const applyFilter = (stack) => {
+      projectList.dataset.active = stack;
+      projectFilter.querySelectorAll('.blog-filter-btn').forEach((button) => {
+        const active = stack !== 'all' && button.dataset.filter === stack;
+        button.classList.toggle('is-active', active);
+        button.setAttribute('aria-pressed', String(active));
       });
-      const visibleCount = blogList.querySelectorAll(`.blog-card[data-lang="${lang}"]`).length;
-      blogEmptyStates.forEach((p) => {
-        p.hidden = !(p.dataset.emptyFor === lang && visibleCount === 0);
+
+      let visible = 0;
+      projectList.querySelectorAll('.blog-card').forEach((card) => {
+        const show = stack === 'all' || card.dataset.stack === stack;
+        card.hidden = !show;
+        if (show) {
+          visible += 1;
+        }
       });
+
+      if (projectEmpty) {
+        projectEmpty.hidden = visible !== 0;
+      }
     };
 
-    blogFilter.addEventListener('click', (event) => {
-      const btn = event.target.closest('[data-filter]');
-      if (!btn) {
+    projectFilter.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-filter]');
+      if (!button) {
         return;
       }
-      applyFilter(btn.dataset.filter);
-    });
-
-    applyFilter(blogList.dataset.active || 'en');
-  }
-
-  const resumeName = document.querySelector('[data-resume-name]');
-
-  if (resumeName) {
-    const defaultName = resumeName.textContent;
-    const defaultTitle = document.title;
-
-    const applyName = () => {
-      const name = (new URLSearchParams(window.location.hash.slice(1)).get('name') || '').trim();
-      resumeName.textContent = name || defaultName;
-    };
-
-    applyName();
-    // Typing #name=… into the address bar of an open page doesn't reload it.
-    window.addEventListener('hashchange', applyName);
-
-    // Chrome and Safari use the document title as the Save-as-PDF file name.
-    window.addEventListener('beforeprint', () => {
-      document.title = `${resumeName.textContent}_${resumeName.dataset.pdfTitle}`;
-    });
-    window.addEventListener('afterprint', () => {
-      document.title = defaultTitle;
+      const next = projectList.dataset.active === button.dataset.filter ? 'all' : button.dataset.filter;
+      applyFilter(next);
     });
   }
 
-  document.querySelectorAll('[data-print]').forEach((button) => {
-    button.addEventListener('click', () => window.print());
-  });
-
-  const interactiveSelector = 'a, button, input, textarea, select, label';
-  const projectCards = document.querySelectorAll('.project-card[data-project-url]');
-
-  projectCards.forEach((card, index) => {
-    card.style.transitionDelay = `${Math.min(index * 45, 260)}ms`;
-
-    const url = card.getAttribute('data-project-url');
-    if (!url) {
+  document.querySelectorAll('.member-grid .member-card').forEach((card) => {
+    if (!(card instanceof HTMLDetailsElement)) {
       return;
     }
 
-    const openProject = (event) => {
-      const target = event.target;
-      if (target instanceof Element && target.closest(interactiveSelector)) {
+    card.addEventListener('toggle', () => {
+      if (!card.open) {
         return;
       }
 
-      window.location.href = url;
-    };
+      document.querySelectorAll('.member-grid .member-card[open]').forEach((other) => {
+        if (other !== card) {
+          other.removeAttribute('open');
+        }
+      });
 
-    card.addEventListener('click', openProject);
-    card.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        openProject(event);
-      }
+      card.scrollIntoView({ block: 'nearest' });
     });
   });
 

@@ -1,0 +1,39 @@
+---
+layout: default
+title: Members
+description: "Research team leader, postdoctoral researchers, students, research staff, and alumni."
+permalink: /members/
+redirect_from:
+  - /resume/
+  - /resume.html
+  - /resume-ko/
+  - /resume-ko.html
+---
+
+{%- comment -%}
+  People are files in _members/, same idea as _projects/.
+  group: leader | postdoc | student | staff | alumni
+  sequence orders people inside a group. position is shown for student, staff, and alumni.
+  The markdown body is the bio. Alumni are not expandable.
+{%- endcomment -%}
+{%- assign people = site.members | sort: "sequence" -%}
+{%- assign leaders = people | where: "group", "leader" -%}
+{%- assign postdocs = people | where: "group", "postdoc" -%}
+{%- assign students = people | where: "group", "student" -%}
+{%- assign staff = people | where: "group", "staff" -%}
+{%- assign alumni = people | where: "group", "alumni" -%}
+
+<section class="section-space members-page">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="eyebrow">Lab</p>
+      <h1>Members</h1>
+    </header>
+
+    {% include member-group.html id="leader" title="Research Team Leader" people=leaders expandable=true show_position=false featured=true %}
+    {% include member-group.html id="postdocs" title="Postdoctoral Researchers" people=postdocs expandable=true show_position=false featured=false %}
+    {% include member-group.html id="students" title="Students" people=students expandable=true show_position=true featured=false %}
+    {% include member-group.html id="staff" title="Research Staff" people=staff expandable=true show_position=true featured=false %}
+    {% include member-group.html id="alumni" title="Alumni" people=alumni expandable=false show_position=true featured=false %}
+  </div>
+</section>

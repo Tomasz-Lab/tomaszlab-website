@@ -6,9 +6,6 @@ seo:
   name: "SFB Lab"
 ---
 
-{% assign all_projects = site.projects | sort: "sequence" %}
-{% assign live_projects = all_projects | where_exp: "p", "p.demo_url" %}
-
 <section class="home-hero section-space">
   <div class="container hero-shell reveal">
     <!-- <p class="eyebrow">(&gt;_&lt;)</p> -->
@@ -18,13 +15,13 @@ seo:
     </p>
 
     <div class="hero-actions">
-      <a href="#projects" class="btn btn-primary">Browse the Catalogue</a>
-      <a href="{{ '/about/' | relative_url }}" class="btn btn-ghost">About Me</a>
+      <a href="{{ '/projects/' | relative_url }}" class="btn btn-primary">Browse Projects</a>
+      <a href="{{ '/about/' | relative_url }}" class="btn btn-ghost">About Us</a>
     </div>
 
-    <div class="hero-metrics">
+    <!-- <div class="hero-metrics">
       <article class="metric-card reveal">
-        <span class="metric-value">{{ all_projects | size }}</span>
+        <span class="metric-value">0</span>
         <span class="metric-label">Units catalogued</span>
       </article>
       <article class="metric-card reveal">
@@ -32,28 +29,9 @@ seo:
         <span class="metric-label">Where the rest live</span>
       </article>
       <article class="metric-card reveal">
-        <span class="metric-value">{{ live_projects | size }}</span>
+        <span class="metric-value">0</span>
         <span class="metric-label">Live right now, go poke one</span>
       </article>
-    </div>
-  </div>
-</section>
-
-<section id="projects" class="section-space projects-section">
-  <div class="container">
-    <header class="section-head reveal">
-      <p class="eyebrow">Catalogue</p>
-      <h2>Resources</h2>
-      <p>
-        Projects, libraries, and usable tools.
-      </p>
-      <!-- <p class="lab-note">// numbered by build order &mdash; UNIT 01 is the oldest. Listed here by preference.</p> -->
-    </header>
-
-    <div class="project-grid">
-      {% for project in all_projects %}
-      {% include project-card.html %}
-      {% endfor %}
-    </div>
+    </div> -->
   </div>
 </section>

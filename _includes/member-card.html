@@ -1,0 +1,54 @@
+{%- comment -%}
+  One person from the members collection.
+  include.member, include.expandable (bool), include.show_position (bool), include.featured (bool)
+{%- endcomment -%}
+{%- assign person = include.member -%}
+{%- assign bio = person.content | strip -%}
+{%- assign can_expand = false -%}
+{%- if include.expandable and bio != "" -%}
+  {%- assign can_expand = true -%}
+{%- endif -%}
+{%- assign portrait = person.image -%}
+{%- unless portrait contains "/assets/" -%}
+  {%- assign portrait = nil -%}
+{%- endunless -%}
+{%- assign name_parts = person.name | split: " " -%}
+{%- assign initial_a = name_parts | first | slice: 0, 1 | upcase -%}
+{%- assign initial_b = "" -%}
+{%- if name_parts.size > 1 -%}
+  {%- assign initial_b = name_parts | last | slice: 0, 1 | upcase -%}
+{%- endif -%}
+
+{%- if can_expand -%}
+<details class="member-card{% if include.featured %} is-featured{% endif %}">
+  <summary>
+{%- else -%}
+<article class="member-card{% if include.featured %} is-featured{% endif %} is-static">
+  <div class="member-face">
+{%- endif -%}
+    <span class="member-photo">
+      {%- if portrait -%}
+      <img src="{% include image-src.html path=portrait %}" alt="" />
+      {%- else -%}
+      <span class="member-fallback" aria-hidden="true">{{ initial_a }}{{ initial_b }}</span>
+      {%- endif -%}
+    </span>
+    <span class="member-meta">
+      <span class="member-name">{{ person.name }}</span>
+      {%- if include.show_position and person.position -%}
+      <span class="member-position">{{ person.position }}</span>
+      {%- endif -%}
+      {%- if can_expand -%}
+      <span class="member-cue">Bio</span>
+      {%- endif -%}
+    </span>
+{%- if can_expand -%}
+  </summary>
+  <div class="member-bio">
+    {{ person.content }}
+  </div>
+</details>
+{%- else -%}
+  </div>
+</article>
+{%- endif -%}

@@ -30,20 +30,13 @@ A project's explicit `image:` is therefore also its `og:image`, so keep it PNG (
 
 When debugging Google/social cards, check the layout AND [_plugins/og_image.rb](_plugins/og_image.rb) before `_config.yml`.
 
-### Bilingual posts and resume
+### Language switch
 
-English posts live in `_posts/`, Korean in `_posts/ko/`. Permalinks differ by language (`/blog/:title/` vs `/blog/ko/:title/`), set via `defaults` in [_config.yml](_config.yml) — that block is **type-scoped to `posts`** so it doesn't rewrite `/about/`, `/resume/`, etc. Cross-link translations via:
+The header shows EN / PL on every page. Polish copy is not written yet. When a translation exists, set `translations.pl` to its path in that page's front matter and [_layouts/default.html](_layouts/default.html) turns PL into a link. The template blog and resume were removed.
 
-```yaml
-translations:
-  ko: /blog/ko/some-post/
-```
+### Members are a collection, like projects
 
-Both [_layouts/default.html](_layouts/default.html) (hreflang) and [_layouts/post.html](_layouts/post.html) (translation link button) read this field. The resume page pair (`/resume/` + `/resume-ko/`) also uses it.
-
-### Resume PDF is the print stylesheet
-
-The resume's PDF button only calls `window.print()`; the submission layout is the `@media print` block at the end of [_sass/_resume.scss](_sass/_resume.scss) (A4 via a named `@page resume`). Every selector there carries `.resume-page` because A4 width trips the 760px rules in `_responsive.scss`, which load later. The name at the top of the PDF is print-only and defaults to `site.author.name`; the real name is supplied only through a `#name=…` URL fragment read by [assets/js/main.js](assets/js/main.js). Never write the real name into the source.
+`/members/` replaces the old resume page (`/resume/` and `/resume-ko/` redirect there). People are `_members/*.md` with `output: false`, so the bio expands on the members page and a person does not get a URL. `group` is `leader`, `postdoc`, `student`, `staff`, or `alumni`. `sequence` orders people inside a group. `position` is shown for students, staff, and alumni. The markdown body is the bio; alumni cards do not open one. `image` is the portrait (PNG, optional `.webp` sibling via [_includes/image-src.html](_includes/image-src.html)).
 
 ### Sitemap is hand-rolled
 
@@ -59,8 +52,8 @@ The site does **not** use `jekyll-sitemap` despite the Gemfile listing — it's 
 
 ## Content tone
 
-Home and About copy intentionally lean playful and self-deprecating to match the `(>_<)` favicon. Resume pages stay professional as deliberate contrast. Don't carry resume tone into home/about, or vice versa.
+Home and About copy intentionally lean playful and self-deprecating to match the `(>_<)` favicon. The members page stays straightforward. Don't carry that tone into home/about, or vice versa.
 
-Project pages have no shared template. Open with a paragraph that says what the thing is, then build sections around that project's strongest technical points, with project-specific headings and details checked against the source repo. The old Overview / Key Features / Challenges / What I Learned / Impact skeleton is retired. `description` is both the card text and the hero summary; the card shows the first 6 `tech_stack` items, listed without version numbers. Link sibling projects as `/projects/<name>/`. The resume's Independent Work blurbs paraphrase project descriptions, so when a description's facts change, update `resume.html` and `resume-ko.html` too.
+Project pages have no shared template. Open with a paragraph that says what the thing is, then build sections around that project's strongest technical points, with project-specific headings and details checked against the source repo. The old Overview / Key Features / Challenges / What I Learned / Impact skeleton is retired. `description` is both the card text and the hero summary; the card shows the first 6 `tech_stack` items, listed without version numbers. Link sibling projects as `/projects/<name>/`.
 
 In `.html` page bodies, HTML-escape angle brackets in copy: `(&gt;_&lt;)`, not `(>_<)`. Kramdown only processes `.md`, but the HTML parser can still misread a bare `<`.

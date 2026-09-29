@@ -1,0 +1,14 @@
+{%- comment -%}
+  A role section on the members page.
+  include.title, include.people, include.expandable, include.show_position, include.featured, include.id
+{%- endcomment -%}
+<section class="members-group reveal" id="{{ include.id }}">
+  <h2 class="members-group-title">{{ include.title }}</h2>
+  {%- if include.people.size > 0 -%}
+  <div class="{% if include.featured %}member-leaders{% else %}member-grid{% endif %}">
+    {%- for person in include.people -%}
+    {% include member-card.html member=person expandable=include.expandable show_position=include.show_position featured=include.featured %}
+    {%- endfor -%}
+  </div>
+  {%- endif -%}
+</section>

@@ -10,12 +10,10 @@ The layout and sample content are copied from [zeikar/zeikar.github.io](https://
 .
 ├── index.html               # Home: hero + project catalogue
 ├── about.html
-├── blog.html                # Post index
-├── resume.html              # Resume (English)
-├── resume-ko.html           # Resume (Korean)
+├── blog.html                # Project index (permalink /projects/)
+├── members.html             # Lab members
+├── _members/                # One Markdown file per person
 ├── _projects/               # One Markdown file per project page
-├── _posts/                  # English posts
-│   └── ko/                  # Korean translations
 ├── _layouts/  _includes/  _sass/
 ├── _plugins/og_image.rb     # Fills in a DOGimg social card for pages without an image
 ├── assets/                  # CSS entry, JS, images
@@ -47,6 +45,7 @@ layout: project
 title: "My Project"
 description: "One sentence; it's the home card text and the page summary."
 tech_stack: ["TypeScript", "WebGL2"]
+stack: Function prediction methods
 github_url: "https://github.com/zeikar/my-project"
 demo_url: "https://zeikar.dev/my-project/"
 image: "/assets/images/projects/my-project.png"
@@ -55,21 +54,34 @@ gadget_no: 21
 ---
 ```
 
-- `sequence` is the order on the home page. `gadget_no` is the UNIT number, assigned by build order, and never changes.
+- `sequence` is the order on the home page and the projects page. `gadget_no` is the UNIT number, assigned by build order, and never changes.
+- `stack` is one of `project_stacks` in `_config.yml`. The projects page lists everything until a stack filter is selected.
 - The card shows the first six `tech_stack` entries. Leave out version numbers.
 - `demo_url` and `image` are optional. Without an `image`, the social card comes from DOGimg.
 - Keep `image` a PNG, since it's also the social card. Drop a smaller `.webp` with the same name next to it and the card and project page use that instead.
 
 The page body has no fixed template. See [CLAUDE.md](CLAUDE.md) for how the pages are written.
 
-### A blog post
+### A lab member
 
-English posts go in `_posts/` and publish under `/blog/<slug>/`. Korean posts go in `_posts/ko/` under `/blog/ko/<slug>/`. Link a pair with `translations:` in each post's front matter:
+Add `_members/<name>.md`. The file does not get its own page. `/members/` groups people by `group` and sorts each group by `sequence`.
 
-```yaml
-translations:
-  ko: /blog/ko/some-post/
+```md
+---
+name: "Ada Lovelace"
+group: student
+position: "PhD student"
+image: "/assets/images/members/ada.png"
+sequence: 1
+---
+
+One or two paragraphs. This body is the bio, shown when the card is opened.
 ```
+
+- `group` is one of `leader`, `postdoc`, `student`, `staff`, `alumni`.
+- `position` is shown for students, research staff, and alumni.
+- `image` is optional. A same-named `.webp` next to the PNG is used on the card.
+- Leader, postdoc, student, and staff cards open the bio. Alumni do not, so leave their body empty.
 
 ### Sitemaps
 

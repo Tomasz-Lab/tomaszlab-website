@@ -1,44 +1,49 @@
 ---
 layout: default
-title: Blog
-description: "Build logs, architecture decisions, and the occasional rabbit hole — notes from Zeikar's Lab."
-permalink: /blog/
+title: Projects
+description: "Function prediction methods, microbiome resources, and tools from the lab."
+permalink: /projects/
+redirect_from:
+  - /blog/
 ---
+
+{% assign projects = site.projects | sort: "sequence" %}
 
 <section class="section-space blog-section">
   <div class="container narrow">
     <header class="section-head reveal">
-      <p class="eyebrow">Writing</p>
-      <h1>Notes from the lab</h1>
-      <p>Build logs, architecture decisions, and the occasional rabbit hole.</p>
+      <p class="eyebrow">Work</p>
+      <h1>Projects</h1>
+      <p>Methods, resources, and tools from the lab.</p>
     </header>
 
-    {% if site.posts.size > 0 %}
-    <div class="blog-filter" role="group" aria-label="Filter posts by language">
-      <button type="button" class="blog-filter-btn is-active" data-filter="en" aria-pressed="true">EN</button>
-      <button type="button" class="blog-filter-btn" data-filter="ko" aria-pressed="false">KO</button>
+    <div class="blog-filter project-filter" role="group" aria-label="Filter projects">
+      {% for stack in site.project_stacks %}
+      <button type="button" class="blog-filter-btn" data-filter="{{ stack }}" aria-pressed="false">{{ stack }}</button>
+      {% endfor %}
     </div>
 
-    <ol class="blog-list" data-active="en">
-      {% for post in site.posts %}
-      <li class="blog-card reveal" data-lang="{{ post.lang | default: 'en' }}">
-        <a href="{{ post.url | relative_url }}" class="blog-card-link" hreflang="{{ post.lang | default: 'en' }}">
-          <div class="blog-card-meta">
-            <span class="blog-card-date">{{ post.date | date: "%B %d, %Y" }}</span>
-            <span class="blog-card-lang" data-lang="{{ post.lang | default: 'en' }}">{{ post.lang | default: 'en' | upcase }}</span>
+    <ol class="blog-list project-list" data-active="all">
+      {% for project in projects %}
+      <li class="blog-card reveal" data-stack="{{ project.stack }}">
+        <a href="{{ project.url | relative_url }}" class="blog-card-link">
+          <div class="blog-card-heading">
+            <span class="blog-card-icon">
+              {% if project.image and project.image contains "/assets/" %}
+              <img src="{% include image-src.html path=project.image %}" alt="" />
+              {% else %}
+              <span class="blog-card-fallback" aria-hidden="true">{{ project.title | slice: 0, 1 | upcase }}</span>
+              {% endif %}
+            </span>
+            <h2 class="blog-card-title">{{ project.title }}</h2>
           </div>
-          <h2 class="blog-card-title">{{ post.title }}</h2>
-          {% if post.subtitle %}
-          <p class="blog-card-subtitle">{{ post.subtitle }}</p>
+          {% if project.description %}
+          <p class="blog-card-subtitle">{{ project.description }}</p>
           {% endif %}
         </a>
       </li>
       {% endfor %}
     </ol>
-    <p class="blog-empty" data-empty-for="en" hidden>No English posts yet. Working on it.</p>
-    <p class="blog-empty" data-empty-for="ko" hidden>한국어 글이 아직 없어요.</p>
-    {% else %}
-    <p class="blog-empty">No posts yet. Working on it.</p>
-    {% endif %}
+    <p class="blog-empty project-empty" hidden>No projects in this group yet.</p>
   </div>
 </section>

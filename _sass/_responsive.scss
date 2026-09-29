@@ -21,6 +21,7 @@
   .resume-actions {
     justify-content: flex-start;
   }
+
 }
 
 @media (max-width: 760px) {
@@ -95,5 +96,41 @@
 
   .resume-contact li + li::before {
     content: none;
+  }
+
+  .member-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .member-grid .member-card summary,
+  .member-grid .member-face {
+    flex-direction: row;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.75rem;
+  }
+
+  .member-grid .member-photo {
+    width: 5.5rem;
+    height: 5.5rem;
+    flex-shrink: 0;
+    aspect-ratio: auto;
+    border-radius: 0.75rem;
+  }
+
+  .member-grid .member-meta {
+    padding: 0.15rem 0.2rem 0.15rem 0;
+  }
+
+  .member-card.is-featured summary,
+  .member-card.is-featured .member-face {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .member-card.is-featured .member-photo {
+    width: 8rem;
+    height: 8rem;
   }
 }
