@@ -1,0 +1,57 @@
+.about-panels {
+  margin-top: 1.5rem;
+  display: grid;
+  /* "What I build" carries the longest copy; a wider middle column keeps the
+     side panels from stretching into mostly empty boxes. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 0.9rem;
+}
+
+.about-panel {
+  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid rgba(31, 42, 55, 0.1);
+  border-radius: 1rem;
+  padding: 1.1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.about-panel h2 {
+  margin: 0;
+  font-family: "Bricolage Grotesque", "Space Grotesk", sans-serif;
+  font-size: 1.2rem;
+}
+
+.about-panel p {
+  margin: 0.65rem 0 0;
+  color: var(--ink-soft);
+}
+
+.about-panel a {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+.about-panel a:hover {
+  color: var(--brand-strong);
+}
+
+.about-bottom {
+  margin-top: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr auto;
+  align-items: end;
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(31, 42, 55, 0.1);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-soft);
+  padding: 1.1rem;
+}
+
+.about-bottom h2 {
+  margin: 0;
+  font-family: "Bricolage Grotesque", "Space Grotesk", sans-serif;
+  font-size: 1.1rem;
+}

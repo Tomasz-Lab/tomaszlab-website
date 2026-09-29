@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% if jekyll.environment == 'production' and site.google_analytics and site.google_analytics != "" %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ site.google_analytics }}');
+    </script>
+    {% endif %}
+
+    {% seo %}
+
+    {% comment %}
+      RSS auto-discovery. jekyll-feed builds /feed.xml but doesn't inject the
+      <link rel="alternate"> itself — feed_meta emits it so readers and crawlers
+      can find the feed. jekyll-seo-tag already emits BlogPosting JSON-LD for
+      posts, so no hand-rolled Article schema is needed here.
+    {% endcomment %}
+    {% feed_meta %}
+
+    {% comment %} hreflang annotations for posts that have translations {% endcomment %}
+    {% if page.translations %}
+      {% assign self_lang = page.lang | default: 'en' %}
+      <link rel="alternate" hreflang="{{ self_lang }}" href="{{ page.url | absolute_url }}" />
+      {% for tr in page.translations %}
+      <link rel="alternate" hreflang="{{ tr[0] }}" href="{{ tr[1] | absolute_url }}" />
+      {% endfor %}
+      {% if self_lang == 'en' %}
+      <link rel="alternate" hreflang="x-default" href="{{ page.url | absolute_url }}" />
+      {% elsif page.translations.en %}
+      <link rel="alternate" hreflang="x-default" href="{{ page.translations.en | absolute_url }}" />
+      {% endif %}
+    {% endif %}
+
+    {% comment %}
+      _plugins/og_image.rb sets page.image to a dogimg URL for every doc and
+      default-layout page that doesn't define one explicitly, so jekyll-seo-tag
+      handles og:image / twitter:image. Emit explicit dimensions whenever the
+      image is dogimg-rendered, so social crawlers don't round-trip the image.
+    {% endcomment %}
+    {% if page.image and page.image contains 'dogimg.vercel.app' %}
+      <meta property="og:image:width" content="1200" />
+      <meta property="og:image:height" content="630" />
+    {% endif %}
+
+    {% comment %}
+      Homepage-only WebSite structured data. Signals our preferred site name
+      (and short alternates) to Google for the search-result site title.
+      jekyll-seo-tag already handles og:site_name and <title> from site.title.
+    {% endcomment %}
+    {% if page.url == '/' %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": {{ site.title | smartify | jsonify }},
+      "alternateName": ["Irregular Apparatus Lab", "Zeikar Lab", "Zeikar"],
+      "url": {{ '/' | absolute_url | jsonify }}
+    }
+    </script>
+    {% endif %}
+
+    {% comment %}
+      About-page Person structured data. sameAs links help Google connect
+      this profile to external identities (GitHub/Twitter/LinkedIn) for
+      knowledge-panel signals.
+    {% endcomment %}
+    {% if page.url == '/about/' %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Zeikar",
+      "url": {{ '/about/' | absolute_url | jsonify }},
+      "jobTitle": "Software Engineer",
+      "sameAs": [
+        "https://github.com/zeikar",
+        "https://twitter.com/zeikar_dev",
+        "https://linkedin.com/in/zeikar"
+      ]
+    }
+    </script>
+    {% endif %}
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ '/assets/images/favicon.ico' | relative_url }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="{{ '/assets/images/favicon-16x16.png' | relative_url }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="{{ '/assets/images/favicon-32x32.png' | relative_url }}"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="{{ '/assets/images/android-chrome-192x192.png' | relative_url }}"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="{{ '/assets/images/apple-touch-icon.png' | relative_url }}"
+    />
+    <link
+      rel="manifest"
+      href="{{ '/assets/images/site.webmanifest' | relative_url }}"
+    />
+    <meta name="theme-color" content="#f6f1e6" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="{{ '/assets/css/style.css' | relative_url }}"
+    />
+
+    {% comment %}
+      .reveal starts at opacity:0 and is only cleared by IntersectionObserver, so
+      without JS every project card, section head, and post renders blank. Must
+      come after the stylesheet — same specificity, so source order decides.
+    {% endcomment %}
+    <noscript>
+      <style>
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      </style>
+    </noscript>
+  </head>
+  <body class="site-shell" id="top">
+    <div class="ambient-bg" aria-hidden="true">
+      <div class="ambient-orb orb-a"></div>
+      <div class="ambient-orb orb-b"></div>
+      <div class="ambient-orb orb-c"></div>
+      <div class="ambient-grid"></div>
+    </div>
+
+    <header class="site-header" id="site-header">
+      <div class="container nav-shell">
+        <a class="brand" href="{{ '/' | relative_url }}">
+          <span class="brand-dot" aria-hidden="true"></span>
+          {{ site.title }}
+        </a>
+
+        <button
+          class="nav-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="primary-nav"
+        >
+          Menu
+        </button>
+
+        <nav id="primary-nav" class="primary-nav" aria-label="Primary">
+          <a
+            href="{{ '/' | relative_url }}"
+            class="nav-link {% if page.url == '/' %}is-active{% endif %}"
+          >
+            Home
+          </a>
+          <a
+            href="{{ '/about/' | relative_url }}"
+            class="nav-link {% if page.url == '/about/' %}is-active{% endif %}"
+          >
+            About
+          </a>
+          <a
+            href="{{ '/blog/' | relative_url }}"
+            class="nav-link {% if page.url contains '/blog' %}is-active{% endif %}"
+          >
+            Blog
+          </a>
+          <a
+            href="{{ '/resume/' | relative_url }}"
+            class="nav-link {% if page.url == '/resume/' or page.url == '/resume-ko/' %}is-active{% endif %}"
+          >
+            Resume
+          </a>
+          {% if site.github_username %}
+          <a
+            href="https://github.com/{{ site.github_username }}"
+            target="_blank"
+            rel="noopener"
+            class="nav-link nav-link-ext"
+          >
+            GitHub
+          </a>
+          {% endif %}
+        </nav>
+      </div>
+    </header>
+
+    <main class="site-main">{{ content }}</main>
+
+    <footer class="site-footer">
+      <div class="container footer-shell">
+        <p>
+          (c) {{ site.time | date: "%Y" }} {{ site.title }}
+        </p>
+        {% unless page.hide_footer_links == true %}
+        <div class="footer-links">
+          {% if site.github_username %}
+          <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener">GitHub</a>
+          {% endif %}
+          {% if site.twitter_username %}
+          <a href="https://twitter.com/{{ site.twitter_username }}" target="_blank" rel="noopener">Twitter</a>
+          {% endif %}
+          {% if site.email and page.hide_footer_email != true %}
+          <a href="mailto:{{ site.email }}">Email</a>
+          {% endif %}
+        </div>
+        {% endunless %}
+      </div>
+    </footer>
+
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+  </body>
+</html>

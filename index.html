@@ -1,0 +1,63 @@
+---
+layout: default
+title: "Irregular Apparatus Lab"
+description: "Irregular Apparatus Lab — oddly specific tools, built one at a time. Frameworks, web apps, browser extensions, and desktop things that survived the drafts folder."
+seo:
+  name: "Zeikar's Lab"
+---
+
+{% assign all_projects = site.projects | sort: "sequence" %}
+{% assign live_projects = all_projects | where_exp: "p", "p.demo_url" %}
+
+<section class="home-hero section-space">
+  <div class="container hero-shell reveal">
+    <p class="eyebrow">Irregular Apparatus Lab (&gt;_&lt;)</p>
+    <h1 class="hero-title">I build small machines for oddly specific problems.</h1>
+    <p class="hero-copy">
+      A 2D rig engine that hands the rigging to an AI agent. A CLI that performs
+      surgery on your liked songs. A city sim with a stricter data flow than most
+      production apps. Every one gets a unit number the day it starts. The rest are
+      still in a folder called /someday, pretending they'll be ready next week.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#projects" class="btn btn-primary">Browse the Catalogue</a>
+      <a href="{{ '/about/' | relative_url }}" class="btn btn-ghost">About Me</a>
+    </div>
+
+    <div class="hero-metrics">
+      <article class="metric-card reveal">
+        <span class="metric-value">{{ all_projects | size }}</span>
+        <span class="metric-label">Units catalogued</span>
+      </article>
+      <article class="metric-card reveal">
+        <span class="metric-value">/someday</span>
+        <span class="metric-label">Where the rest live</span>
+      </article>
+      <article class="metric-card reveal">
+        <span class="metric-value">{{ live_projects | size }}</span>
+        <span class="metric-label">Live right now, go poke one</span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="section-space projects-section">
+  <div class="container">
+    <header class="section-head reveal">
+      <p class="eyebrow">Catalogue</p>
+      <h2>Things that survived</h2>
+      <p>
+        Real products, libraries, and a couple of experiments. Each one made it past
+        the part where I usually lose interest.
+      </p>
+      <p class="lab-note">// numbered by build order &mdash; UNIT 01 is the oldest. Listed here by preference.</p>
+    </header>
+
+    <div class="project-grid">
+      {% for project in all_projects %}
+      {% include project-card.html %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
