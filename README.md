@@ -2,8 +2,6 @@
 
 Jekyll site for [rund0wn/lab-website](https://github.com/rund0wn/lab-website), deployed to GitHub Pages at `https://rund0wn.github.io/lab-website/` by [a GitHub Actions workflow](.github/workflows/pages.yml) on every push to `main`.
 
-The layout and sample content are copied from [zeikar/zeikar.github.io](https://github.com/zeikar/zeikar.github.io) (MIT). Replace the pages, posts, and projects when the lab's own content is ready.
-
 ## What's where
 
 ```text
