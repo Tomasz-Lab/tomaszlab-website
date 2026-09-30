@@ -3,10 +3,10 @@ title: SFB Lab
 email: example@gmail.com
 description: >-
   Structural and Functional Genomics Lab
-# Project site: https://rund0wn.github.io/lab-website/
+# Project site: https://Tomasz-Lab.github.io/tomaszlab-website/
 # The Pages workflow overrides baseurl with the live base path.
-baseurl: "/lab-website"
-url: "https://rund0wn.github.io"
+baseurl: "/tomaszlab-website"
+url: "https://tomaszlab.github.io"
 # twitter:
 #   username: zeikar_dev
 #   card: summary_large_image
@@ -40,12 +40,7 @@ google_analytics: ""
 # SEO settings
 lang: en
 author:
-  name: Zeikar
-  # twitter: zeikar_dev
-# social:
-  # name: Zeikar
-  # links:
-    # - https://github.com/zeikar
+  name: TomaszLab
 
 # Additional same-origin URLs to include in sitemap.xml
 # Paths on this site. Other zeikar.dev subsites are separate repos and are not copied here.
