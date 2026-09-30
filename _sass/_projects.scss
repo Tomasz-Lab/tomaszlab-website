@@ -10,7 +10,7 @@
   display: flex;
   flex-direction: column;
   background: var(--surface);
-  border: 1px solid rgba(31, 42, 55, 0.11);
+  border: 1px solid rgba(26, 35, 50, 0.11);
   border-radius: 1rem;
   overflow: hidden;
   box-shadow: var(--shadow-soft);
@@ -21,11 +21,11 @@
 .project-card:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-strong);
-  border-color: rgba(15, 139, 141, 0.35);
+  border-color: rgba(140, 47, 57, 0.35);
 }
 
 .project-card:focus-visible {
-  outline: 3px solid rgba(15, 139, 141, 0.45);
+  outline: 3px solid rgba(140, 47, 57, 0.45);
   outline-offset: 2px;
 }
 
@@ -37,8 +37,8 @@
   align-items: center;
   gap: 0.7rem;
   padding: 0.5rem 0 0.5rem 1rem;
-  background: rgba(235, 94, 40, 0.075);
-  border-bottom: 1px solid rgba(31, 42, 55, 0.09);
+  background: rgba(30, 58, 95, 0.075);
+  border-bottom: 1px solid rgba(26, 35, 50, 0.09);
 }
 
 /* Runs flush to the card edge — stopping short of it reads as a dangling dash
@@ -46,11 +46,11 @@
 .unit-strip::after {
   content: "";
   flex: 1;
-  border-bottom: 1px dashed rgba(31, 42, 55, 0.24);
+  border-bottom: 1px dashed rgba(26, 35, 50, 0.24);
 }
 
 .unit-no {
-  font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-family: "Source Code Pro", ui-monospace, monospace;
   font-size: 0.7rem;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -62,7 +62,7 @@
 .project-media {
   flex-shrink: 0;
   aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, #ffd8b8, #b8ebe6);
+  background: linear-gradient(135deg, #ead4d6, #d5dee8);
   overflow: hidden;
 }
 
@@ -82,14 +82,14 @@
   height: 100%;
   display: grid;
   place-items: center;
-  background: linear-gradient(135deg, rgba(235, 94, 40, 0.22), rgba(15, 139, 141, 0.25));
+  background: linear-gradient(135deg, rgba(30, 58, 95, 0.22), rgba(140, 47, 57, 0.25));
 }
 
 .project-fallback span {
-  font-family: "Bricolage Grotesque", "Space Grotesk", sans-serif;
+  font-family: "Roboto", system-ui, sans-serif;
   font-size: 1.8rem;
-  font-weight: 800;
-  color: rgba(31, 42, 55, 0.66);
+  font-weight: 700;
+  color: rgba(26, 35, 50, 0.66);
 }
 
 .project-body {
@@ -107,7 +107,7 @@
 .project-body h3 {
   margin: 0;
   font-size: 1.25rem;
-  font-family: "Bricolage Grotesque", "Space Grotesk", sans-serif;
+  font-family: "Roboto", system-ui, sans-serif;
 }
 
 .project-body p {
@@ -122,8 +122,8 @@
 .project-body .unit-spec {
   margin: 0.9rem 0 0;
   padding-top: 0.65rem;
-  border-top: 1px dashed rgba(31, 42, 55, 0.18);
-  font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  border-top: 1px dashed rgba(26, 35, 50, 0.18);
+  font-family: "Source Code Pro", ui-monospace, monospace;
   font-size: 0.7rem;
   line-height: 1.6;
   color: rgba(82, 96, 109, 0.9);
@@ -133,7 +133,7 @@
    by the time you reach a card reading "UNIT 12" the explanation is offscreen. */
 .section-head .lab-note {
   margin-top: 0.85rem;
-  font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-family: "Source Code Pro", ui-monospace, monospace;
   font-size: 0.78rem;
   /* Was 0.72 alpha — 3.21:1, under AA. This line is the only thing explaining
      why UNIT 12 sits before UNIT 16, so it has to be readable. */
@@ -148,9 +148,9 @@
 }
 
 .project-tags span {
-  border: 1px solid rgba(15, 139, 141, 0.25);
-  color: #106d6f;
-  background: rgba(116, 185, 182, 0.13);
+  border: 1px solid rgba(140, 47, 57, 0.25);
+  color: #8c2f39;
+  background: rgba(109, 135, 168, 0.13);
   border-radius: 999px;
   padding: 0.26rem 0.58rem;
   font-size: 0.74rem;
@@ -184,7 +184,7 @@
 .project-hero {
   margin-top: 1rem;
   background: rgba(255, 255, 255, 0.74);
-  border: 1px solid rgba(31, 42, 55, 0.1);
+  border: 1px solid rgba(26, 35, 50, 0.1);
   border-radius: 1.2rem;
   padding: clamp(1.3rem, 1.5vw + 1rem, 2.1rem);
   box-shadow: var(--shadow-soft);
@@ -204,7 +204,7 @@
 
 .project-hero h1 {
   margin: 0;
-  font-family: "Bricolage Grotesque", "Space Grotesk", sans-serif;
+  font-family: "Roboto", system-ui, sans-serif;
   font-size: clamp(2rem, 3.4vw, 3.05rem);
   line-height: 1.08;
 }
@@ -222,7 +222,7 @@
 .project-content {
   margin-top: 1.2rem;
   background: rgba(255, 255, 255, 0.77);
-  border: 1px solid rgba(31, 42, 55, 0.1);
+  border: 1px solid rgba(26, 35, 50, 0.1);
   border-radius: 1.2rem;
   padding: clamp(1.2rem, 1.2vw + 1rem, 1.9rem);
   box-shadow: var(--shadow-soft);
@@ -232,13 +232,13 @@
 .project-content h3,
 .project-content h4 {
   margin: 1.5rem 0 0.7rem;
-  font-family: "Bricolage Grotesque", "Space Grotesk", sans-serif;
+  font-family: "Roboto", system-ui, sans-serif;
   line-height: 1.22;
 }
 
 .project-content p,
 .project-content li {
-  color: #334155;
+  color: #5e6a78;
 }
 
 .project-content ul,

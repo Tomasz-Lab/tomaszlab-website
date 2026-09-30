@@ -14,14 +14,14 @@
 }
 
 .project-filter .blog-filter-btn {
-  font-family: "Space Grotesk", system-ui, sans-serif;
+  font-family: "Source Sans 3", system-ui, sans-serif;
   font-size: 0.82rem;
   letter-spacing: 0.01em;
   text-transform: none;
 }
 
 .blog-filter-btn {
-  font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-family: "Source Code Pro", ui-monospace, monospace;
   font-size: 0.75rem;
   letter-spacing: 0.08em;
   font-weight: 600;
@@ -35,20 +35,20 @@
 }
 
 .blog-filter-btn:hover {
-  border-color: rgba(15, 139, 141, 0.4);
+  border-color: rgba(140, 47, 57, 0.4);
   color: var(--ink);
 }
 
 .blog-filter-btn.is-active {
-  background: rgba(15, 139, 141, 0.1);
+  background: rgba(140, 47, 57, 0.1);
   color: var(--accent);
-  border-color: rgba(15, 139, 141, 0.45);
+  border-color: rgba(140, 47, 57, 0.45);
 }
 
 .blog-filter-btn[data-filter="ko"].is-active {
-  background: rgba(235, 94, 40, 0.1);
+  background: rgba(30, 58, 95, 0.1);
   color: var(--brand);
-  border-color: rgba(235, 94, 40, 0.45);
+  border-color: rgba(30, 58, 95, 0.45);
 }
 
 .blog-list {
@@ -74,7 +74,7 @@
 .blog-card:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-soft);
-  border-color: rgba(235, 94, 40, 0.35);
+  border-color: rgba(30, 58, 95, 0.35);
 }
 
 .blog-card-link {
@@ -98,18 +98,18 @@
 }
 
 .blog-card-lang {
-  font-family: "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+  font-family: "Source Code Pro", ui-monospace, monospace;
   font-size: 0.7rem;
   letter-spacing: 0.08em;
   font-weight: 600;
   padding: 0.2rem 0.5rem;
   border-radius: 0.35rem;
-  background: rgba(15, 139, 141, 0.1);
+  background: rgba(140, 47, 57, 0.1);
   color: var(--accent);
 }
 
 .blog-card-lang[data-lang="ko"] {
-  background: rgba(235, 94, 40, 0.1);
+  background: rgba(30, 58, 95, 0.1);
   color: var(--brand);
 }
 
@@ -128,7 +128,7 @@
   flex-shrink: 0;
   border-radius: 0.55rem;
   overflow: hidden;
-  background: linear-gradient(135deg, rgba(235, 94, 40, 0.2), rgba(15, 139, 141, 0.22));
+  background: linear-gradient(135deg, rgba(30, 58, 95, 0.2), rgba(140, 47, 57, 0.22));
 }
 
 .blog-card-icon img {
@@ -138,14 +138,14 @@
 }
 
 .blog-card-fallback {
-  font-family: "Bricolage Grotesque", "Space Grotesk", sans-serif;
+  font-family: "Roboto", system-ui, sans-serif;
   font-size: 0.95rem;
-  font-weight: 800;
-  color: rgba(31, 42, 55, 0.66);
+  font-weight: 700;
+  color: rgba(26, 35, 50, 0.66);
 }
 
 .blog-card-title {
-  font-family: "Bricolage Grotesque", "Space Grotesk", sans-serif;
+  font-family: "Roboto", system-ui, sans-serif;
   font-size: 1.5rem;
   line-height: 1.25;
   margin: 0;
