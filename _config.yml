@@ -6,12 +6,7 @@ description: >-
 # Project site: https://Tomasz-Lab.github.io/tomaszlab-website/
 # The Pages workflow overrides baseurl with the live base path.
 baseurl: "/tomaszlab-website"
-url: "https://tomaszlab.github.io"
-# twitter:
-#   username: zeikar_dev
-#   card: summary_large_image
-# twitter_username: zeikar_dev
-# github_username: zeikar
+url: "https://tomasz-lab.github.io"
 
 # Build settings
 markdown: kramdown
