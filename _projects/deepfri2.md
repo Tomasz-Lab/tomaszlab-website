@@ -10,7 +10,7 @@ tech_stack:
     "structure",
     "deep learning"
   ]
-github_url: "https://github.com/TomaszLab/deepFRI2"
+github_url: "https://github.com/Tomasz-Lab/deepFRI2"
 stack: Function prediction methods
 image: "/assets/images/projects/fryingpan2.png"
 sequence: 1
