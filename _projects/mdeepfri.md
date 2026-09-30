@@ -10,7 +10,7 @@ tech_stack:
     "sequence",
     "structure"
   ]
-github_url: "https://github.com/TomaszLab/Metagenomic-DeepFRI"
+github_url: "https://github.com/Tomasz-Lab/Metagenomic-DeepFRI"
 stack: Function prediction methods
 image: "/assets/images/projects/fryingpan.png"
 sequence: 1
