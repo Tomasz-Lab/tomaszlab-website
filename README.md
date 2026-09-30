@@ -1,6 +1,6 @@
 # lab-website
 
-Jekyll site for [Tomasz-Lab/lab-website](https://github.com/Tomasz-Lab/tomaszlab-website), deployed to GitHub Pages at `https://tomaszlab.github.io/lab-website/` by [a GitHub Actions workflow](.github/workflows/pages.yml) on every push to `main`.
+Jekyll site for [Tomasz-Lab/lab-website](https://github.com/Tomasz-Lab/tomaszlab-website), deployed to GitHub Pages at `https://tomasz-lab.github.io/tomaszlab-website/` by [a GitHub Actions workflow](.github/workflows/pages.yml) on every push to `main`.
 
 ## What's where
 
